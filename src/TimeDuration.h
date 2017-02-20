@@ -8,7 +8,7 @@
 #include "OutStreamTemplates.hpp"
 
 /*@Usage:
- *	{// Parentheses is necessary.
+ *	{// Braces are necessary.
  *		CTimeDurationObject obj_records_running_time(COutputterScreen, NULL);//create CTimeDurationObject object
  *		...//business code
  *	}
