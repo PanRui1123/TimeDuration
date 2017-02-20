@@ -3,6 +3,7 @@
 
 #include "CTimer.hpp"
 #include "CFormatter.hpp"
+#include "CFormatterNoFormat.hpp"
 #include "CTimeDuration.hpp"
 #include "COutputter.hpp"
 #include "OutStreamTemplates.hpp"
@@ -16,5 +17,8 @@
 typedef CTimeDuration<CTimer, COutputterBase > CTimeDurationObject;
 typedef COutputter<CTimer, CFormatter<CTimer>, CScreenStream> COutputterScreen;
 typedef COutputter<CTimer, CFormatter<CTimer>, CFileStream> COutputterFile;
+
+typedef CFormatter<CTimer> CFormatterFormated;
+typedef CFormatterNoFormat<CTimer> CFormatterBare;
 
 #endif

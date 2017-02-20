@@ -1,5 +1,7 @@
 #include "TimeDuration.h"
 
+extern const char filename[] = "fuck";
+
 int main()
 {
 	int i, j, k = 0;

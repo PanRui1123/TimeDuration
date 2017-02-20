@@ -5,6 +5,10 @@
 #include <stdexcept>
 #include <sys/time.h>
 
+#define usecs_in_1_sec (1e6)
+#define sec_to_usec(sec) ((double)(sec) * usecs_in_1_sec)
+#define usec_to_sec(usec) ((double)(usec) / usecs_in_1_sec)
+
 class CTimer
 {
 public:
@@ -22,14 +26,14 @@ public:
 	std::string to_sec()
 	{
 		return std::to_string(
-				((double)(this->__current.tv_sec + this->__current.tv_usec * 1000000))/1000000.0
+				this->__current.tv_sec + usec_to_sec(this->__current.tv_usec)
 				);	
 	}
 
 	std::string to_usec()
 	{
 		return std::to_string(
-				this->__current.tv_sec * 1000000 + this->__current.tv_usec
+				sec_to_usec(this->__current.tv_sec) + this->__current.tv_usec
 				);	
 	}
 
@@ -54,13 +58,13 @@ CTimer operator-(CTimer end, CTimer beg)
 	while(result.__current.tv_usec < 0)
 	{
 		--result.__current.tv_sec;
-		result.__current.tv_usec += 1000000;
+		result.__current.tv_usec += usecs_in_1_sec;
 	}
 
-	while(result.__current.tv_usec > 1000000)
+	while(result.__current.tv_usec > usecs_in_1_sec)
 	{
 		++result.__current.tv_sec;
-		result.__current.tv_usec -= 1000000;
+		result.__current.tv_usec -= usecs_in_1_sec;
 	}
 
 	return result;
